@@ -1,15 +1,28 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./NewsCard.css";
 
 export default function NewsCard({ image, name, language, url }) {
-    return (
-        <div className="card-fixed">   {/* ✅ FIXED WIDTH WRAPPER */}
+    const navigate = useNavigate();
 
-            <div
-                className="news-link"
-                style={{ textDecoration: "none", color: "inherit" }}
-            >
+    // Detect if the device is mobile (iPhone / Android)
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    const handleOpen = (e) => {
+        e.stopPropagation();
+
+        if (isMobile) {
+            // Mobile → ALWAYS open in new tab (fix Safari iframe block)
+            window.open(url, "_blank", "noopener,noreferrer");
+        } else {
+            // Desktop → open inside WebView
+            navigate(`/webview/${encodeURIComponent(url)}`);
+        }
+    };
+
+    return (
+        <div className="card-fixed">
+            <div className="news-link" style={{ textDecoration: "none", color: "inherit" }}>
                 <div
                     className="news-card position-relative shadow-sm p-3 text-center"
                     style={{
@@ -60,10 +73,9 @@ export default function NewsCard({ image, name, language, url }) {
                     </h5>
 
                     {/* View Website Button */}
-                    <Link
-                        to={`/webview/${encodeURIComponent(url)}`}
+                    <button
+                        onClick={handleOpen}
                         className="btn btn-primary w-100 mt-2"
-                        onClick={(e) => e.stopPropagation()}
                         style={{
                             fontWeight: "bold",
                             borderRadius: "8px",
@@ -71,10 +83,9 @@ export default function NewsCard({ image, name, language, url }) {
                         }}
                     >
                         View Website
-                    </Link>
+                    </button>
                 </div>
             </div>
-
         </div>
     );
 }
