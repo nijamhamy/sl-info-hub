@@ -1,0 +1,197 @@
+/* ================= HERO SECTION ================= */
+.hero-section {
+    width: 100%;
+    height: 260px;
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+    color: white;
+    text-align: center;
+    padding-top: 60px;
+}
+
+/* ================= SECTION HEADER ================= */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* =====================================================
+        UNIVERSAL HORIZONTAL SCROLL ROW
+===================================================== */
+.scroll-row {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+    padding-bottom: 16px;
+
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scroll-row::-webkit-scrollbar {
+    display: none;
+}
+
+/* Wrapper for each card */
+.scroll-item {
+    display: block;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+}
+
+/* =====================================================
+        RESPONSIVE CARD WIDTHS
+===================================================== */
+
+/* Desktop → 6 cards visible */
+@media (min-width: 992px) {
+    .scroll-item {
+        flex: 0 0 180px;
+        max-width: 180px;
+    }
+}
+
+/* Tablet → 3 cards */
+@media (min-width: 601px) and (max-width: 991px) {
+    .scroll-item {
+        flex: 0 0 32%;
+        max-width: 32%;
+    }
+}
+
+/* Mobile → 2 cards */
+@media (max-width: 600px) {
+    .scroll-item {
+        flex: 0 0 48%;
+        max-width: 48%;
+    }
+}
+
+/* =====================================================
+        SCROLL WRAPPER + ARROWS (Desktop Only)
+===================================================== */
+@media (min-width: 992px) {
+
+    .scroll-wrapper {
+        position: relative;
+        width: 1165px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .scroll-arrow {
+        position: absolute;
+        top: 40%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-size: 22px;
+        z-index: 20;
+        transition: 0.2s ease;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .scroll-arrow:hover {
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+    .scroll-arrow.left {
+        left: -20px;
+    }
+
+    .scroll-arrow.right {
+        right: -20px;
+    }
+}
+
+/* =====================================================
+   HIDE ARROWS ON MOBILE + TABLET
+===================================================== */
+@media (max-width: 991px) {
+    .scroll-arrow {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
+}
+
+/* =====================================================
+        INFO GRID
+===================================================== */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.info-card {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 5px solid #007bff;
+}
+
+/* =====================================================
+        ARTICLES
+===================================================== */
+.full-articles {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.article-box {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 5px solid #007bff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.article-box p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #444;
+}
+
+/* Mobile article text */
+@media (max-width: 600px) {
+    .article-box {
+        padding: 15px;
+    }
+
+    .article-box p {
+        font-size: 14px;
+    }
+}
+
+/* Fade animation */
+.fade-row {
+    animation: fadeInUp 0.6s ease both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
