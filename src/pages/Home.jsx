@@ -18,6 +18,26 @@ export default function Home() {
     const [weather, setWeather] = useState({});
     const [rates, setRates] = useState({});
     const [prayers, setPrayers] = useState({});
+    const [visitorCount, setVisitorCount] = useState(null);
+
+
+    useEffect(() => {
+        async function fetchVisitors() {
+            try {
+                const res = await fetch(
+                    "https://hits.sh/srilankanews.netlify.app/visits.json"
+                );
+                const data = await res.json();
+                setVisitorCount(data.total);
+            } catch (error) {
+                console.error("Visitor counter error:", error);
+            }
+        }
+
+        fetchVisitors();
+    }, []);
+
+
 
     /* ===========================================================
     1. Random News + Radios
@@ -460,6 +480,12 @@ export default function Home() {
                             entertained, and spiritually connected in one smooth experience.
                         </p>
                     </div>
+
+                    <div className="info-card">
+                        <h4>👥 Website Visitors</h4>
+                        <p>Total Visitors: {visitorCount ?? "..."} </p>
+                    </div>
+
 
 
                 </div>
