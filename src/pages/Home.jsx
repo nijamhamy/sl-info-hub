@@ -7,6 +7,14 @@ import { Link } from "react-router-dom";
 import BackToTop from "../components/BackToTop";
 
 import "./Home.css";
+import { Helmet } from "react-helmet";
+
+<Helmet>
+    <title>SL Info Hub – Sri Lanka News, Radio & Weather</title>
+    <meta name="description" content="Latest Sri Lankan news, FM radio, weather, and updates in one place." />
+    <meta name="keywords" content="Sri Lanka news, sri lanka radio, tamil news, sinhala news, SL updates" />
+</Helmet>
+
 
 export default function Home() {
     const [randomNews, setRandomNews] = useState([]);
