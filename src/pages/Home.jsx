@@ -18,24 +18,29 @@ export default function Home() {
     const [weather, setWeather] = useState({});
     const [rates, setRates] = useState({});
     const [prayers, setPrayers] = useState({});
-    const [visitorCount, setVisitorCount] = useState(null);
+    const [daily, setDaily] = useState(0);
+    const [monthly, setMonthly] = useState(0);
+    const [total, setTotal] = useState(0);
+    async function fetchVisitors() {
+        try {
+            const res = await fetch("https://visitor-counter.amnijam60.workers.dev/");
+            const data = await res.json();
 
+            setDaily(data.daily);
+            setMonthly(data.monthly);
+            setTotal(data.total);
+
+        } catch (err) {
+            console.error("Visitor counter error:", err);
+        }
+    }
 
     useEffect(() => {
-        async function fetchVisitors() {
-            try {
-                const res = await fetch(
-                    "https://hits.sh/srilankanews.netlify.app/visits.json"
-                );
-                const data = await res.json();
-                setVisitorCount(data.total);
-            } catch (error) {
-                console.error("Visitor counter error:", error);
-            }
-        }
-
         fetchVisitors();
     }, []);
+
+
+
 
 
 
@@ -481,10 +486,42 @@ export default function Home() {
                         </p>
                     </div>
 
-                    <div className="info-card">
-                        <h4>👥 Website Visitors</h4>
-                        <p>Total Visitors: {visitorCount ?? "..."} </p>
+                    {/* ================= VISITOR STATS SECTION ================= */}
+                    <div className="container my-5">
+                        <h2 className="fw-bold text-center mb-4">👥 Visitor Statistics</h2>
+
+                        <div className="row g-4">
+
+                            {/* Daily Visitors */}
+                            <div className="col-md-4">
+                                <div className="visitor-box shadow-lg p-4 text-center">
+                                    <i className="bi bi-calendar-check visitor-icon"></i>
+                                    <h4 className="mt-3">Daily Visitors</h4>
+                                    <h2 className="visitor-count">{daily}</h2>
+                                </div>
+                            </div>
+
+                            {/* Monthly Visitors */}
+                            <div className="col-md-4">
+                                <div className="visitor-box shadow-lg p-4 text-center">
+                                    <i className="bi bi-calendar-month visitor-icon"></i>
+                                    <h4 className="mt-3">Monthly Visitors</h4>
+                                    <h2 className="visitor-count">{monthly}</h2>
+                                </div>
+                            </div>
+
+                            {/* Total Visitors */}
+                            <div className="col-md-4">
+                                <div className="visitor-box shadow-lg p-4 text-center">
+                                    <i className="bi bi-people-fill visitor-icon"></i>
+                                    <h4 className="mt-3">Total Visitors</h4>
+                                    <h2 className="visitor-count">{total}</h2>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+
 
 
 
