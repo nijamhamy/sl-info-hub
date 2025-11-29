@@ -14,6 +14,7 @@ import About from "./pages/About";
 import Terms from "./pages/Terms";
 import Contact from "./pages/Contact";
 import WebViewer from "./pages/WebViewer";
+import CookieBanner from "./components/CookieBanner";
 
 function AppContent() {
   const location = useLocation();
@@ -50,6 +51,9 @@ function AppContent() {
           <Route path="/webview/:url" element={<WebViewer />} />
         </Routes>
       )}
+
+      {/* ⭐ Added Cookie Banner (AdSense Required) */}
+      <CookieBanner />
 
       <Footer />
     </>
