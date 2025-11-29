@@ -1,11 +1,10 @@
 import NewsCard from "../components/NewsCard";
 import { newsList } from "../data/slNewsData";
 import { useState } from "react";
-import "./NewsGrid.css";   // ← Import the grid CSS file
+import "./NewsGrid.css";
 import BackToTop from "../components/BackToTop";
 
 import { Helmet } from "react-helmet";
-
 
 export default function SLNews() {
     const [filter, setFilter] = useState("All");
@@ -17,12 +16,28 @@ export default function SLNews() {
 
     return (
         <>
+            {/* SEO Helmet */}
             <Helmet>
-                <title>SL Info Hub – Sri Lanka News, Radio & Weather</title>
-                <meta name="description" content="Latest Sri Lankan news, FM radio, weather, and updates in one place." />
-                <meta name="keywords" content="Sri Lanka news, sri lanka radio, tamil news, sinhala news, SL updates" />
+                <title>SL News – Latest Sri Lankan Tamil, Sinhala & English News</title>
+                <meta
+                    name="description"
+                    content="Browse all major Sri Lankan news websites in one place. Access Tamil, Sinhala, and English news updates instantly — politics, sports, weather, economy, live alerts and more."
+                />
+                <meta
+                    name="keywords"
+                    content="Sri Lanka news, Tamil news Sri Lanka, Sinhala news Sri Lanka, English news Sri Lanka, SL news, Sri Lanka headlines"
+                />
             </Helmet>
-            <div className="container mt-5 pt-4" style={{ paddingTop: "80px", paddingBottom: "90px" }}>
+
+            <div
+                className="container mt-5 pt-4"
+                style={{ paddingTop: "80px", paddingBottom: "90px" }}
+            >
+
+                {/* PAGE TITLE */}
+                <h1 className="fw-bold text-center mb-4">
+                    🇱🇰 Sri Lankan News – Tamil | Sinhala | English
+                </h1>
 
                 {/* Filter Buttons */}
                 <div className="d-flex justify-content-center gap-3 mb-4">
@@ -33,7 +48,7 @@ export default function SLNews() {
                 </div>
 
                 {/* Cards Grid */}
-                <div className="cards-grid">
+                <div className="cards-grid mb-5">
                     {filteredNews.map((item) => (
                         <div className="card-col" key={item.id}>
                             <NewsCard
@@ -45,6 +60,41 @@ export default function SLNews() {
                         </div>
                     ))}
                 </div>
+
+                {/* ===================== SEO ARTICLE AT BOTTOM ===================== */}
+                <div className="seo-article mb-5" style={{ lineHeight: "1.7", fontSize: "1.05rem" }}>
+                    <h2 className="fw-bold mb-3">📰 About Sri Lankan News</h2>
+
+                    <p>
+                        Sri Lanka has a strong and fast-growing digital news ecosystem. Every day,
+                        millions of Sri Lankans check news online in Tamil, Sinhala, and English
+                        to stay informed about politics, weather, business, sports, and international
+                        updates. With so many websites available, finding everything in one place
+                        can be difficult — that is why SL Info Hub brings them together for you.
+                    </p>
+
+                    <p>
+                        Tamil audiences rely heavily on platforms like Virakesari, Thinakaran,
+                        Lankasri, and IBC Tamil, while Sinhala audiences follow Ada Derana,
+                        Hiru News, News First, Rivira, and Dinamina for reliable updates.
+                        English readers frequently visit outlets like Daily News, ColomboPage,
+                        Sunday Observer, and Daily FT.
+                    </p>
+
+                    <p>
+                        Digital news continues to replace traditional newspapers in Sri Lanka,
+                        especially because mobile devices make it easy to access breaking updates
+                        anytime. With instant notifications, live videos, and continuous news feeds,
+                        online platforms give readers the fastest access to information.
+                    </p>
+
+                    <p>
+                        On this page, you can filter news by Tamil, Sinhala, or English and explore
+                        trusted sources easily. Whether you live in Sri Lanka or abroad, this page
+                        makes it simple to stay connected to important events happening back home.
+                    </p>
+                </div>
+
                 <BackToTop />
 
             </div>
