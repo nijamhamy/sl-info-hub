@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://srilankanews.netlify.app/sitemap.xml
