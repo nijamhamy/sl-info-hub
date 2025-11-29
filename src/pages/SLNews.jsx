@@ -4,7 +4,8 @@ import { useState } from "react";
 import "./NewsGrid.css";
 import BackToTop from "../components/BackToTop";
 
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+
 
 export default function SLNews() {
     const [filter, setFilter] = useState("All");

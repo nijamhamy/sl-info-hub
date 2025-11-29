@@ -1,0 +1,100 @@
+/* ============================
+   VISITOR STAT CARDS ANIMATION
+   ============================ */
+
+/* Card Entry Animation */
+@keyframes slideUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Apply only when visitor section is visible */
+.visitor-stats-wrapper .visitor-box {
+    animation: slideUp 0.8s ease forwards;
+    border-radius: 18px;
+    background: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover Glow + Lift Effect */
+.visitor-stats-wrapper .visitor-box:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Shine / Light Sweep */
+.visitor-stats-wrapper .visitor-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 60%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: skewX(-25deg);
+    pointer-events: none;
+}
+
+/* On hover → light moves */
+.visitor-stats-wrapper .visitor-box:hover::before {
+    animation: shine 0.8s forwards;
+}
+
+@keyframes shine {
+    0% {
+        left: -120%;
+    }
+
+    100% {
+        left: 140%;
+    }
+}
+
+/* Icon bounce animation */
+@keyframes bounceIcon {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.visitor-stats-wrapper .visitor-icon {
+    font-size: 45px;
+    color: #005BEA;
+    animation: bounceIcon 1.6s infinite ease-in-out;
+}
+
+/* Count number styling */
+.visitor-stats-wrapper .visitor-count {
+    font-size: 42px;
+    font-weight: 700;
+    color: #003E8A;
+    margin-top: 10px;
+    animation: fadeIn 1.2s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

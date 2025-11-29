@@ -7,7 +7,10 @@ import { Link } from "react-router-dom";
 import BackToTop from "../components/BackToTop";
 
 import "./Home.css";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import VisitorStats from "../components/VisitorStats";
+
+
 
 
 export default function Home() {
@@ -18,31 +21,6 @@ export default function Home() {
     const [weather, setWeather] = useState({});
     const [rates, setRates] = useState({});
     const [prayers, setPrayers] = useState({});
-    const [daily, setDaily] = useState(0);
-    const [monthly, setMonthly] = useState(0);
-    const [total, setTotal] = useState(0);
-    async function fetchVisitors() {
-        try {
-            const res = await fetch("https://visitor-counter.amnijam60.workers.dev/");
-            const data = await res.json();
-
-            setDaily(data.daily);
-            setMonthly(data.monthly);
-            setTotal(data.total);
-
-        } catch (err) {
-            console.error("Visitor counter error:", err);
-        }
-    }
-
-    useEffect(() => {
-        fetchVisitors();
-    }, []);
-
-
-
-
-
 
     /* ===========================================================
     1. Random News + Radios
@@ -485,51 +463,13 @@ export default function Home() {
                             entertained, and spiritually connected in one smooth experience.
                         </p>
                     </div>
-
-                    {/* ================= VISITOR STATS SECTION ================= */}
-                    <div className="container my-5">
-                        <h2 className="fw-bold text-center mb-4">👥 Visitor Statistics</h2>
-
-                        <div className="row g-4">
-
-                            {/* Daily Visitors */}
-                            <div className="col-md-4">
-                                <div className="visitor-box shadow-lg p-4 text-center">
-                                    <i className="bi bi-calendar-check visitor-icon"></i>
-                                    <h4 className="mt-3">Daily Visitors</h4>
-                                    <h2 className="visitor-count">{daily}</h2>
-                                </div>
-                            </div>
-
-                            {/* Monthly Visitors */}
-                            <div className="col-md-4">
-                                <div className="visitor-box shadow-lg p-4 text-center">
-                                    <i className="bi bi-calendar-month visitor-icon"></i>
-                                    <h4 className="mt-3">Monthly Visitors</h4>
-                                    <h2 className="visitor-count">{monthly}</h2>
-                                </div>
-                            </div>
-
-                            {/* Total Visitors */}
-                            <div className="col-md-4">
-                                <div className="visitor-box shadow-lg p-4 text-center">
-                                    <i className="bi bi-people-fill visitor-icon"></i>
-                                    <h4 className="mt-3">Total Visitors</h4>
-                                    <h2 className="visitor-count">{total}</h2>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-
+                    <VisitorStats />
 
                 </div>
                 <BackToTop />
 
 
-            </div>
+            </div >
 
         </>
     );

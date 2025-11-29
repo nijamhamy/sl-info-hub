@@ -16,15 +16,15 @@ import Contact from "./pages/Contact";
 import WebViewer from "./pages/WebViewer";
 import CookieBanner from "./components/CookieBanner";
 
+import { HelmetProvider } from "react-helmet-async";   // ⭐ NEW
+
 function AppContent() {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // ALWAYS move page to top when route changes
     window.scrollTo(0, 0);
 
-    // Show loading animation
     setLoading(true);
     const timer = setTimeout(() => {
       setLoading(false);
@@ -34,7 +34,8 @@ function AppContent() {
   }, [location.pathname]);
 
   return (
-    <>
+    <HelmetProvider>       {/* ⭐ WRAP EVERYTHING HERE */}
+
       <Navbar />
 
       {loading ? (
@@ -52,11 +53,12 @@ function AppContent() {
         </Routes>
       )}
 
-      {/* ⭐ Added Cookie Banner (AdSense Required) */}
+      {/* ⭐ AdSense Cookie Banner */}
       <CookieBanner />
 
       <Footer />
-    </>
+
+    </HelmetProvider>
   );
 }
 
